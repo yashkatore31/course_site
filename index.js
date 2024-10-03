@@ -17,3 +17,4 @@ async function main() {
     await mongoose.connect("mongodb+srv://ybkatore31:ybkatore31@cluster0.qnnd1.mongodb.net/course_site")
     app.listen(3000);
 }
+main()
