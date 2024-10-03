@@ -1,0 +1,17 @@
+{
+  "name": "course_site",
+  "version": "1.0.0",
+  "description": "course site is a web application project based of MERN stack \r <br>\r site will include user panel and admin panel \r <br>\r it will be use nosql database",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.7.0"
+  }
+}
