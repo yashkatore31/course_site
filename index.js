@@ -6,6 +6,8 @@ const app = express();
 
 app.use(express.json());
 
+
+//routhandelrs
 app.use("/user",userRouter);
 app.use("course",courseRouter);
 
