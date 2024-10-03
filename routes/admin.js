@@ -1,8 +1,8 @@
 const { Router } = require("express");
-const { adminModel } = require("../db")
+const { adminModel } = require("../db");
+const {adminMiddelware}= require("../middleware/admin");
 const jwt = require("jsonwebtoken");
 
-const JWT_SECRET_KEY = "kyash123"
 const adminRouter = Router();
 
 //created rout for signin admin
@@ -52,7 +52,7 @@ adminRouter.post("/signin", async function (req, res) {
     if (admin) {
         const token = jwt.sign({
             id: admin._id
-        }, JWT_SECRET_KEY);
+        }, JWT_ADMIN_SECRET_KEY);
 
         res.json({
             token: token
@@ -69,10 +69,9 @@ adminRouter.post("/signin", async function (req, res) {
 
 
 //created rout for add course
-adminRouter.post("/course", function (req, res) {
-    res.json({
-        msg: "add course"
-    });
+adminRouter.post("/course",adminMiddelware, function (req, res) {
+    const adminID = req.user
+    
 });
 
 //created rout for edit course

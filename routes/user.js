@@ -1,8 +1,8 @@
 const { Router } = require("express");
 const { userModel } = require("../db");
+const {userMiddelware}= require("../middleware/user");
 const jwt = require("jsonwebtoken");
 
-const JWT_SECRET_KEY = "yashk123";
 const userRouter = Router();
 
 //created rout for signup user
@@ -52,7 +52,7 @@ userRouter.post("/signin", async function (req, res) {
     if (user) {
         const token = jwt.sign({
             id: user._id
-        }, JWT_SECRET_KEY);
+        }, JWT_USER_SECRET_KEY);
 
         res.json({
             token: token

@@ -1,0 +1,8 @@
+const JWT_USER_SECRET_KEY = "yashk123";
+const JWT_ADMIN_SECRET_KEY = "kyash123";
+
+module.export ={
+    JWT_ADMIN_SECRET_KEY: JWT_ADMIN_SECRET_KEY,
+    JWT_USER_SECRET_KEY: JWT_USER_SECRET_KEY
+}
+
