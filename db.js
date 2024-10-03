@@ -1,24 +1,27 @@
+require('dotenv').config();
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId;
 
-mongoose.connect("");
-
-const userSchema = Schema({
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Database connected successfully'))
+  .catch(err => console.error('Database connection error:', err));
+  
+const userSchema = new Schema({
     email : { type:String , unique: true},
     password : String,
     firstname : String,
     lastname : String
 });
 
-const adminSchema = Schema({
+const adminSchema = new Schema({
     email : { type:String , unique: true},
     password : String,
     firstname : String,
     lastname : String
 });
 
-const courseSchema = Schema({
+const courseSchema = new Schema({
     title : String,
     description : String,
     pricce : String,
@@ -27,7 +30,7 @@ const courseSchema = Schema({
 
 });
 
-const purchaseSchema = Schema({
+const purchaseSchema = new Schema({
     userID : ObjectId,
     courseID : ObjectId
 
