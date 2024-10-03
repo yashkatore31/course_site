@@ -10,5 +10,5 @@ courseRouter.post("/courses",function(req, res){
 });
 
 module.exports = {
-    courseRouter: courseRouters
+    courseRouter: courseRouter
 }
