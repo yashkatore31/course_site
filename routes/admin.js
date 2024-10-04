@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { adminModel } = require("../db");
+const { adminModel, courseModel } = require("../db");
 const {adminMiddelware}= require("../middleware/admin");
 const jwt = require("jsonwebtoken");
 const {JWT_ADMIN_SECRET_KEY}= require("../config.js")
@@ -95,9 +95,34 @@ adminRouter.put("/purchase", function (req, res) {
 
 
 //created rout for edit course
-adminRouter.get("/courses/bulk", function (req, res) {
+adminRouter.put("/courses",adminMiddelware, async function (req, res) {
+    const creatorID = req.userID;
+
+    const { title,description, pricce,imageURL } = req.body;
+    
+    const course = await courseModel.updatesOne({
+        _id: courseID,
+        creatorID:creatorID
+    },
+        {
+        title,description, pricce,imageURL,creatorID
+    });
+
     res.json({
-        msg: "get all course"
+        msg:"coursw created",
+        courseID: course._id
+    })
+});
+
+//created rout for edit course
+adminRouter.get("/purchase",adminMiddelware,async function (req, res) {
+    const creatorID = req.userID;
+
+    const courses = await courseModel.find({
+        creatorID
+    });
+    res.json({
+        courses
     });
 });
 
