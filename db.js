@@ -1,36 +1,36 @@
 require('dotenv').config();
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId;
 
-mongoose.connect("")
-  
+mongoose.connect(process.env.MONGO_URL);
+
 const userSchema = new Schema({
-    email : { type:String , unique: true},
-    password : String,
-    firstname : String,
-    lastname : String
+    email: { type: String, unique: true },
+    password: String,
+    firstname: String,
+    lastname: String
 });
 
 const adminSchema = new Schema({
-    email : { type:String , unique: true},
-    password : String,
-    firstname : String,
-    lastname : String
+    email: { type: String, unique: true },
+    password: String,
+    firstname: String,
+    lastname: String
 });
 
 const courseSchema = new Schema({
-    title : String,
-    description : String,
-    pricce : String,
-    imageURL : String,
-    creatorID : ObjectId
+    title: String,
+    description: String,
+    pricce: String,
+    imageURL: String,
+    creatorID: ObjectId
 
 });
 
 const purchaseSchema = new Schema({
-    userID : ObjectId,
-    courseID : ObjectId
+    userID: ObjectId,
+    courseID: ObjectId
 
 });
 

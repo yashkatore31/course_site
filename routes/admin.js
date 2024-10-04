@@ -2,6 +2,7 @@ const { Router } = require("express");
 const { adminModel } = require("../db");
 const {adminMiddelware}= require("../middleware/admin");
 const jwt = require("jsonwebtoken");
+const {JWT_ADMIN_SECRET_KEY}= require("../config.js")
 
 const adminRouter = Router();
 
@@ -69,9 +70,20 @@ adminRouter.post("/signin", async function (req, res) {
 
 
 //created rout for add course
-adminRouter.post("/course",adminMiddelware, function (req, res) {
-    const adminID = req.user
+//creating imageurl in sas video of youtube harkirat
+adminRouter.post("/course", adminMiddelware,async function (req, res) {
+    const creatorID = req.userID;
+
+    const { title,description, pricce,imageURL } = req.body;
     
+    const course = await courseModel.create({
+        title,description, pricce,imageURL,creatorID
+    });
+
+    res.json({
+        msg:"coursw created",
+        courseID: course._id
+    })
 });
 
 //created rout for edit course
